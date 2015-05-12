@@ -1,4 +1,7 @@
+#coding='utf-8
 from pymongo import MongoClient
+import json
+
 
 client=MongoClient()
 
@@ -12,8 +15,15 @@ l=[]
 for c in cursor:
     l.append(c)
 
-s=l[0]
+res=str(l[0]).replace("u'", '').replace("'",'').replace('{', '').replace('}','')
 
-s=str(s)
+listres=[]
 
-print s.encode('utf-8')
+listres=res.split(',')
+
+s=[[0]*2]*len(listres)
+
+i=0
+
+print listres
+#decodejson=json.loads(l[0])
