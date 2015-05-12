@@ -1,6 +1,7 @@
 from tornado.tcpserver import TCPServer
 from tornado.ioloop  import IOLoop
 import compile
+from xml.etree import ElementTree
 
 class SvnkitServer(TCPServer):  
             def handle_stream(self, stream, address): 
@@ -41,3 +42,9 @@ def listen(port):
     IOLoop.instance().start() 
 def stoplisten():
     IOLoop.instance().stop()
+    
+if __name__=="__main__":
+    xml_file='config.xml' 
+    xml=ElementTree.ElementTree(file=xml_file).getroot()
+    port=xml.find('localport').text
+    listen(port)

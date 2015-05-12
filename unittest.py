@@ -1,7 +1,19 @@
-import os
+from pymongo import MongoClient
 
-os.chdir('e:\\coder\svntag')
+client=MongoClient()
 
-res=os.system('ant')
+db=client.test
 
-print res
+
+cursor=db.user.find({"username":"swift"})
+
+l=[]
+
+for c in cursor:
+    l.append(c)
+
+s=l[0]
+
+s=str(s)
+
+print s.encode('utf-8')

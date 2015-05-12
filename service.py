@@ -2,18 +2,26 @@ import win32serviceutil
 import win32service
 import win32event
 import tor
+from xml.etree import ElementTree
 
-class PythonService(win32serviceutil.ServiceFramework): 
 
-    _svc_name_ = "SvnkitService"
-    _svc_display_name_ = "SvnkitService"
-    _svc_description_ = "Svnkit background Service"
 
+class svnair(win32serviceutil.ServiceFramework): 
+
+    _svc_name_ = "Svn-air tService"
+    _svc_display_name_ = "Svn-air Service"
+    _svc_description_ = "Svn-air background Service"
+    __port=''
+    
     def __init__(self, args): 
         win32serviceutil.ServiceFramework.__init__(self, args) 
         self.hWaitStop = win32event.CreateEvent(None, 0, 0, None)
         self.logger = self._getLogger()
         self.isAlive = True
+        xml_file='config.xml'
+        xml=ElementTree.ElementTree(file=xml_file).getroot()
+        self.__port=xml.find('localport').text
+        
     def _getLogger(self):
         import logging
         import os
@@ -33,20 +41,19 @@ class PythonService(win32serviceutil.ServiceFramework):
         return logger
 
     def SvcDoRun(self):
-        import time
-	
         self.logger.info("svc do run....")
         self.logger.info ("Server start ......")
-	tor.listen(8001)
+        
+        tor.listen(self.__port)
         win32event.WaitForSingleObject(self.hWaitStop, win32event.INFINITE)
         
             
     def SvcStop(self): 
         self.logger.info("svc do stop....")
-	tor.stoplisten()
+        tor.stoplisten()
         self.ReportServiceStatus(win32service.SERVICE_STOP_PENDING) 
         win32event.SetEvent(self.hWaitStop) 
         self.isAlive = False
     
 if __name__=='__main__': 
-    win32serviceutil.HandleCommandLine(PythonService)
+    win32serviceutil.HandleCommandLine(svnair)
