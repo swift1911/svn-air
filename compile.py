@@ -6,19 +6,26 @@ import shutil
 import fnmatch
 import logging
 from xml.etree import ElementTree 
+import Sendmail
 
 ret=''
 workpath=''
-sourcedir='file:///f:/net/'
+sourcedir=''
+username=''
+pwd=''
 
 
 def exportfile():
     global workpath
+    global sourcedir
     xml_file='config.xml' 
     xml=ElementTree.ElementTree(file=xml_file).getroot()
     workpath=xml.find('temppath').text
+    sourcedir=xml.find('sourcedir').text
+    username=xml.find('username').text
+    pwd=xml.find('passwd').text
     try:
-        r=svn.remote.RemoteClient(sourcedir+'trunk','swift','123')
+        r=svn.remote.RemoteClient(sourcedir+'trunk',username,pwd)
         if os.path.exists(os.getcwd()+"\\"+workpath)==True:
             shutil.rmtree(os.getcwd()+"\\"+workpath,True)
         r.checkout(os.getcwd()+"\\"+workpath)
@@ -38,27 +45,34 @@ def compile(env,tagname):
             res=os.system(cmd)
             print res
             if res==0:
+                global sourcedir
                 os.chdir(workpath)
-                r=svn.remote.RemoteClient(sourcedir,'swift','123')
+                r=svn.remote.RemoteClient(sourcedir,username,pwd)
+                #print sourcedir
                 path=['-m','"commit"']
                 #r.run_command('revert',[])
-                print r.run_command('commit',path)
-                print r.copy(sourcedir+'trunk', sourcedir+'tags/'+tagname)
+                r.run_command('commit',path)
+                path=['trunk','tags/'+tagname]
+                r.copy('trunk', 'tags/'+tagname)
                 os.chdir('..')
                 shutil.rmtree(workpath, True)
+                Sendmail.sendtogroup('develop', 'version '+tagname, 'version '+tagname+' is compiled,please test..'+'path : '+sourcedir+"/tags/"+tagname.encode())
                 return 'success'
             else:
                 shutil.rmtree(workpath, True)
                 return 'failed'
         except Exception,e:
+            shutil.rmtree(workpath, True)
             print e
             return e
     if env=='java':
         os.chdir(workpath)
         res=os.system('ant')
         if res==1:
+            shutil.rmtree(workpath, True)
             return 'success'
         else:
+            shutil.rmtree(workpath, True)
             return 'failed'
 def iterfindfiles(path, fnexp):
     global ret
