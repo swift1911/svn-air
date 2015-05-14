@@ -13,11 +13,14 @@ def send_mail(to_list,sub,content):
     msg['Subject'] = sub  
     msg['From'] = me  
     msg['To'] = ";".join(to_list)  
-    try:  
+    try:
         server = smtplib.SMTP()
+        #server.set_debuglevel(1)
         server.connect(mail_host)
         server.login(mail_user,mail_pass)
+        
         server.sendmail(me, to_list, msg.as_string())
+        
         server.close()
         return True
     except Exception, e:  
@@ -25,6 +28,8 @@ def send_mail(to_list,sub,content):
         return False
     
 def sendtogroup(group,theme,msg):
+    global mailto_list
+    mailto_list=[]
     db=mongodbaction()
     cursor=db.authtogetmailaddress(group)
     if cursor!=None:

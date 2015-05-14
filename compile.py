@@ -7,58 +7,70 @@ import fnmatch
 import logging
 from xml.etree import ElementTree 
 import Sendmail
+import log
+import jsondecode
+import sys
+import cmd
 
 ret=''
 workpath=''
 sourcedir=''
 username=''
 pwd=''
+defpath=os.getcwd()
 
 
-def exportfile():
+
+def exportfile(jsonstr):
     global workpath
     global sourcedir
-    xml_file='config.xml' 
+    logger=log.getlogger()
+    xml_file='c:\\config.xml' 
     xml=ElementTree.ElementTree(file=xml_file).getroot()
     workpath=xml.find('temppath').text
-    sourcedir=xml.find('sourcedir').text
-    username=xml.find('username').text
-    pwd=xml.find('passwd').text
+    sourcedir=jsondecode.jsondecode(jsonstr,'svnurl')
+    username=jsondecode.jsondecode(jsonstr,'username')
+    pwd=jsondecode.jsondecode(jsonstr,'userpwd')
     try:
         r=svn.remote.RemoteClient(sourcedir+'trunk',username,pwd)
-        if os.path.exists(os.getcwd()+"\\"+workpath)==True:
-            shutil.rmtree(os.getcwd()+"\\"+workpath,True)
-        r.checkout(os.getcwd()+"\\"+workpath)
+        if os.path.exists(workpath)==True:
+            shutil.rmtree(workpath,True)
+        r.checkout(workpath)
         #r.run_command('commit')
     except Exception,e:
+        logger.info(e)
         print e
         return e
     #shutil.rmtree(os.getcwd()+'\\svn temp')
-def compile(env,tagname):
+def compile(env,tagname,jsonstr):
     global workpath
-    exportfile()
+    logger=log.getlogger()
+    logger.info(os.getcwd())
+    exportfile(jsonstr)
+    logger.info(jsonstr)
     if env=='.net':
         try:
             getprojfilepath()
             print ret
-            cmd='cd '+ret+'& msbuild /p:VisualStudioVersion=12.0' 
+            logger.info(ret)
+            os.chdir(workpath)
+            cmd='msbuild /p:VisualStudioVersion=12.0' 
             res=os.system(cmd)
-            print res
             if res==0:
-                global sourcedir
-                os.chdir(workpath)
+                global sourcedir              
                 r=svn.remote.RemoteClient(sourcedir,username,pwd)
                 #print sourcedir
                 path=['-m','"commit"']
                 #r.run_command('revert',[])
-                r.run_command('commit',path)
+                print r.run_command('commit',path)
                 path=['trunk','tags/'+tagname]
-                r.copy('trunk', 'tags/'+tagname)
-                os.chdir('..')
+                print r.copy('trunk', 'tags/'+tagname+'_compiled')
                 shutil.rmtree(workpath, True)
-                Sendmail.sendtogroup('develop', 'version '+tagname, 'version '+tagname+' is compiled,please test..'+'path : '+sourcedir+"/tags/"+tagname.encode())
+                Sendmail.sendtogroup('testing', 'version '+tagname, 'version '+tagname+' is compiled,please test..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled')
+                Sendmail.sendtogroup('develop', 'version '+tagname, 'version '+tagname+' is compiled successfully..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled')
                 return 'success'
             else:
+                Sendmail.sendtogroup('develop', 'version '+tagname, 'version '+tagname+' is compiled failed..')
                 shutil.rmtree(workpath, True)
                 return 'failed'
         except Exception,e:
@@ -82,9 +94,10 @@ def iterfindfiles(path, fnexp):
             yield os.path.join(root, filename)
             ret+=root
 def getprojfilepath():
-    for filename in iterfindfiles(os.getcwd()+"\\"+workpath, "*.csproj"): 
+    global workpath
+    for filename in iterfindfiles(workpath, "*.csproj"): 
         print filename
 if __name__=="__main__":
-    compile('.net','.net service test')
+    compile('.net','.net service test','{"tagname":"123","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}')
     #compile('.net','.net service test')
     #compile('.net','.net service test')

@@ -1,0 +1,187 @@
+2015-05-14 11:58:01,197 - mylogger - INFO - foorbar
+2015-05-14 12:09:40,704 - mylogger - INFO - E:\coder\win32service\svn temp
+2015-05-14 12:15:56,003 - mylogger - INFO - E:\coder\win32service\svn temp
+2015-05-14 12:15:56,003 - mylogger - INFO - <open file '<stdout>', mode 'w' at 0x0209D078>
+2015-05-14 12:15:56,865 - mylogger - INFO - 0
+2015-05-14 12:17:52,710 - mylogger - INFO - E:\coder\win32service\svn temp
+2015-05-14 12:17:53,476 - mylogger - INFO - 0
+2015-05-14 13:22:02,700 - mylogger - INFO - 0
+2015-05-14 13:22:32,700 - mylogger - INFO - 0
+2015-05-14 13:22:32,700 - mylogger - INFO - <open file '<stdout>', mode 'w' at 0x020AD078>
+2015-05-14 13:22:46,493 - mylogger - INFO - 0
+2015-05-14 13:23:24,368 - mylogger - INFO -  驱动器 E 中的卷是 文档
+ 卷的序列号是 0002-87BB
+
+ E:\coder\win32service 的目录
+
+2015/05/14  12:17    <DIR>          .
+2015/05/14  12:17    <DIR>          ..
+2015/05/07  14:31               383 .project
+2015/05/08  15:00               431 .pydevproject
+2015/05/11  15:06    <DIR>          .settings
+2015/05/14  13:19             3,110 compile.py
+2015/05/14  12:17             3,143 compile.pyc
+2015/05/14  10:36               137 config.xml
+2015/05/14  10:25               280 jsondecode.py
+2015/05/14  11:21               547 jsondecode.pyc
+2015/05/14  12:08               549 log.py
+2015/05/14  12:09               693 log.pyc
+2015/05/13  14:24               594 mongodbaction.py
+2015/05/14  11:21             1,183 mongodbaction.pyc
+2015/05/14  12:05                32 out.txt
+2015/05/14  11:49             1,397 Sendmail.py
+2015/05/14  11:53             1,795 Sendmail.pyc
+2015/05/14  12:15            10,134 service.log
+2015/05/12  15:08             1,915 service.py
+2015/05/14  11:21             2,635 service.pyc
+2015/05/14  13:22               700 test.log
+2015/05/14  11:34             2,340 tor.py
+2015/05/14  11:34             2,812 tor.pyc
+2015/05/14  13:23               114 unittest.py
+              21 个文件         34,924 字节
+               3 个目录 15,843,278,848 可用字节
+
+2015-05-14 13:25:31,243 - mylogger - INFO - E:\coder\win32service\svn temp
+2015-05-14 13:25:31,880 - mylogger - INFO - Microsoft(R) 生成引擎版本 4.0.30319.18408
+[Microsoft .NET Framework 版本 4.0.30319.18408]
+版权所有 (C) Microsoft Corporation。保留所有权利。
+
+生成启动时间为 2015/5/14 13:25:31。
+节点 1 上的项目“E:\coder\win32service\svn temp\WebApplication1.csproj”(默认目标)。
+GenerateTargetFrameworkMonikerAttribute:
+正在跳过目标“GenerateTargetFrameworkMonikerAttribute”，因为所有输出文件相对于输入文件而言都是最新的。
+CoreCompile:
+  C:\Windows\Microsoft.NET\Framework\v4.0.30319\Csc.exe /noconfig /nowarn:1701,1702 /nostdlib+ /errorreport:prompt /warn:4 /define:DEBUG;TRACE /highentropyva+ /reference:"E:\coder\win32service\svn temp\bin\Antlr3.Runtime.dll" /reference:"E:\coder\win32service\svn temp\bin\EntityFramework.dll" /reference:"E:\coder\win32service\svn temp\bin\EntityFramework.SqlServer.dll" /reference:"E:\coder\win32service\svn temp\bin\Microsoft.AspNet.Identity.Core.dll" /reference:"E:\coder\win32service\svn temp\bin\Microsoft.AspNet.Identity.EntityFramework.dll" /reference:"E:\coder\win32service\svn temp\bin\Microsoft.AspNet.Identity.Owin.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Microsoft.CSharp.dll" /reference:"E:\coder\win32service\svn temp\bin\Microsoft.Owin.dll" /reference:"E:\coder\win32service\svn temp\bin\Microsoft.Owin.Host.SystemWeb.dll" /reference:"E:\coder\win32service\svn temp\bin\Microsoft.Owin.Security.Cookies.dll" /reference:"E:\coder\win32service\svn temp\bin\Microsoft.Owin.Security.dll" /reference:"E:\coder\win32service\svn temp\bin\Microsoft.Owin.Security.Facebook.dll" /reference:"E:\coder\win32service\svn temp\bin\Microsoft.Owin.Security.Google.dll" /reference:"E:\coder\win32service\svn temp\bin\Microsoft.Owin.Security.MicrosoftAccount.dll" /reference:"E:\coder\win32service\svn temp\bin\Microsoft.Owin.Security.OAuth.dll" /reference:"E:\coder\win32service\svn temp\bin\Microsoft.Owin.Security.Twitter.dll" /reference:"C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v2.0\Assemblies\Microsoft.Web.Infrastructure.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /reference:"C:\Program Files (x86)\Microsoft Visual Studio 12.0\Blend\Newtonsoft.Json.dll" /reference:"E:\coder\win32service\svn temp\bin\Owin.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.ComponentModel.DataAnnotations.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Configuration.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Core.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.DataSetExtensions.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Drawing.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.EnterpriseServices.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Net.Http.dll" /reference:"E:\coder\win32service\svn temp\bin\System.Net.Http.Formatting.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Net.Http.WebRequest.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Runtime.Serialization.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Transactions.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Web.Abstractions.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Web.ApplicationServices.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Web.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Web.DynamicData.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Web.Entity.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Web.Extensions.dll" /reference:"E:\coder\win32service\svn temp\bin\System.Web.Helpers.dll" /reference:"E:\coder\win32service\svn temp\bin\System.Web.Http.dll" /reference:"E:\coder\win32service\svn temp\bin\System.Web.Http.Owin.dll" /reference:"E:\coder\win32service\svn temp\bin\System.Web.Http.WebHost.dll" /reference:"E:\coder\win32service\svn temp\bin\System.Web.Mvc.dll" /reference:"E:\coder\win32service\svn temp\bin\System.Web.Optimization.dll" /reference:"E:\coder\win32service\svn temp\bin\System.Web.Razor.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Web.Routing.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Web.Services.dll" /reference:"E:\coder\win32service\svn temp\bin\System.Web.WebPages.Deployment.dll" /reference:"E:\coder\win32service\svn temp\bin\System.Web.WebPages.dll" /reference:"E:\coder\win32service\svn temp\bin\System.Web.WebPages.Razor.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.Linq.dll" /reference:"E:\coder\win32service\svn temp\bin\WebGrease.dll" /debug+ /debug:full /optimize- /out:obj\Debug\WebApplication1.dll /subsystemversion:6.00 /target:library /utf8output App_Start\BundleConfig.cs App_Start\FilterConfig.cs App_Start\RouteConfig.cs App_Start\Startup.Auth.cs App_Start\WebApiConfig.cs Areas\HelpPage\ApiDescriptionExtensions.cs Areas\HelpPage\App_Start\HelpPageConfig.cs Areas\HelpPage\Controllers\HelpController.cs Areas\HelpPage\HelpPageAreaRegistration.cs Areas\HelpPage\HelpPageConfigurationExtensions.cs Areas\HelpPage\Models\HelpPageApiModel.cs Areas\HelpPage\SampleGeneration\HelpPageSampleGenerator.cs Areas\HelpPage\SampleGeneration\HelpPageSampleKey.cs Areas\HelpPage\SampleGeneration\ImageSample.cs Areas\HelpPage\SampleGeneration\InvalidSample.cs Areas\HelpPage\SampleGeneration\ObjectGenerator.cs Areas\HelpPage\SampleGeneration\SampleDirection.cs Areas\HelpPage\SampleGeneration\TextSample.cs Areas\HelpPage\XmlDocumentationProvider.cs Controllers\AccountController.cs Controllers\HomeController.cs Global.asax.cs Models\AccountBindingModels.cs Models\AccountViewModels.cs Properties\AssemblyInfo.cs Providers\ApplicationOAuthProvider.cs Results\ChallengeResult.cs Startup.cs "C:\Users\Administrator\AppData\Local\Temp\.NETFramework,Version=v4.5.AssemblyAttributes.cs"
+_CopyFilesMarkedCopyLocal:
+  正在将文件从“C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v2.0\Assemblies\Microsoft.Web.Infrastructure.dll”复制到“bin\Microsoft.Web.Infrastructure.dll”。
+  正在将文件从“C:\Program Files (x86)\Microsoft Visual Studio 12.0\Blend\Newtonsoft.Json.dll”复制到“bin\Newtonsoft.Json.dll”。
+  正在将文件从“C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v2.0\Assemblies\Microsoft.Web.Infrastructure.xml”复制到“bin\Microsoft.Web.Infrastructure.xml”。
+_CopyAppConfigFile:
+正在跳过目标“_CopyAppConfigFile”，因为所有输出文件相对于输入文件而言都是最新的。
+CopyFilesToOutputDirectory:
+  正在将文件从“obj\Debug\WebApplication1.dll”复制到“bin\WebApplication1.dll”。
+  WebApplication1 -> E:\coder\win32service\svn temp\bin\WebApplication1.dll
+  正在将文件从“obj\Debug\WebApplication1.pdb”复制到“bin\WebApplication1.pdb”。
+已完成生成项目“E:\coder\win32service\svn temp\WebApplication1.csproj”(默认目标)的操作。
+
+已成功生成。
+    0 个警告
+    0 个错误
+
+已用时间 00:00:00.51
+
+2015-05-14 13:41:11,359 - mylogger - INFO - E:\coder\win32service
+2015-05-14 13:41:13,367 - mylogger - INFO - {"tagname":"123","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+
+2015-05-14 13:41:13,367 - mylogger - INFO - 
+2015-05-14 13:41:57,081 - mylogger - INFO - E:\coder\win32service
+2015-05-14 13:41:59,400 - mylogger - INFO - {"tagname":"123","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+
+2015-05-14 13:41:59,418 - mylogger - INFO - c:\\svn temp
+2015-05-14 13:48:14,694 - mylogger - INFO - E:\coder\win32service
+2015-05-14 13:48:16,871 - mylogger - INFO - {"tagname":"123","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+
+2015-05-14 13:48:16,888 - mylogger - INFO - c:\\svn temp
+2015-05-14 13:49:25,242 - mylogger - INFO - E:\coder\win32service
+2015-05-14 13:49:27,253 - mylogger - INFO - {"tagname":"123","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+2015-05-14 13:49:27,269 - mylogger - INFO - c:\\svn temp
+2015-05-14 13:49:48,892 - mylogger - INFO - E:\coder\win32service
+2015-05-14 13:49:55,163 - mylogger - INFO - {"tagname":"123","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+2015-05-14 13:49:55,206 - mylogger - INFO - c:\\svn temp
+2015-05-14 13:50:08,065 - mylogger - INFO - E:\coder\win32service
+2015-05-14 13:50:10,221 - mylogger - INFO - {"tagname":"123","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+2015-05-14 13:50:51,016 - mylogger - INFO - c:\\svn temp
+2015-05-14 13:54:55,872 - mylogger - INFO - E:\coder\win32service
+2015-05-14 13:55:01,640 - mylogger - INFO - {"tagname":"123","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+2015-05-14 13:55:01,657 - mylogger - INFO - c:\\svn temp
+2015-05-14 13:55:13,858 - mylogger - INFO - E:\coder\win32service
+2015-05-14 13:55:18,845 - mylogger - INFO - {"tagname":"123","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+2015-05-14 13:55:18,861 - mylogger - INFO - c:\\svn temp
+2015-05-14 13:55:31,038 - mylogger - INFO - E:\coder\win32service
+2015-05-14 13:55:36,460 - mylogger - INFO - {"tagname":"123","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+2015-05-14 13:55:36,476 - mylogger - INFO - c:\\svn temp
+2015-05-14 13:55:52,875 - mylogger - INFO - E:\coder\win32service
+2015-05-14 13:55:58,430 - mylogger - INFO - {"tagname":"123","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+
+2015-05-14 13:55:58,447 - mylogger - INFO - c:\\svn temp
+2015-05-14 14:04:35,977 - mylogger - INFO - E:\coder\win32service
+2015-05-14 14:04:38,868 - mylogger - INFO - {"tagname":"123","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+
+2015-05-14 14:04:38,868 - mylogger - INFO - {"tagname":"123","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+
+2015-05-14 14:04:38,884 - mylogger - INFO - c:\\svn temp
+2015-05-14 14:04:38,884 - mylogger - INFO - c:\\svn temp
+2015-05-14 14:19:59,096 - mylogger - INFO - E:\coder\win32service
+2015-05-14 14:20:01,308 - mylogger - INFO - {"tagname":"123","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+
+2015-05-14 14:20:01,308 - mylogger - INFO - {"tagname":"123","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+
+2015-05-14 14:20:01,323 - mylogger - INFO - c:\\svn temp
+2015-05-14 14:20:01,323 - mylogger - INFO - c:\\svn temp
+2015-05-14 14:23:57,809 - mylogger - INFO - E:\coder\win32service
+2015-05-14 14:24:00,805 - mylogger - INFO - {"tagname":"version 1.3","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+
+2015-05-14 14:24:00,805 - mylogger - INFO - {"tagname":"version 1.3","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+
+2015-05-14 14:24:00,822 - mylogger - INFO - c:\\svn temp
+2015-05-14 14:24:00,822 - mylogger - INFO - c:\\svn temp
+2015-05-14 14:27:39,944 - mylogger - INFO - c:\
+2015-05-14 14:27:39,944 - mylogger - INFO - c:\
+2015-05-14 14:27:57,204 - mylogger - INFO - c:\
+2015-05-14 14:27:57,204 - mylogger - INFO - c:\
+2015-05-14 14:29:47,082 - mylogger - INFO - c:\
+2015-05-14 14:29:47,082 - mylogger - INFO - c:\
+2015-05-14 14:30:57,826 - mylogger - INFO - E:\coder\win32service
+2015-05-14 14:30:59,891 - mylogger - INFO - {"tagname":"123","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+
+2015-05-14 14:30:59,891 - mylogger - INFO - {"tagname":"123","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+
+2015-05-14 14:30:59,907 - mylogger - INFO - c:\\svn temp
+2015-05-14 14:30:59,907 - mylogger - INFO - c:\\svn temp
+2015-05-14 14:36:02,486 - mylogger - INFO - E:\coder\win32service
+2015-05-14 14:36:04,690 - mylogger - INFO - {"tagname":"123","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+
+2015-05-14 14:36:04,690 - mylogger - INFO - {"tagname":"123","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+
+2015-05-14 14:36:04,707 - mylogger - INFO - c:\\svn temp
+2015-05-14 14:36:04,707 - mylogger - INFO - c:\\svn temp
+2015-05-14 14:41:16,061 - mylogger - INFO - E:\coder\win32service
+2015-05-14 14:41:18,609 - mylogger - INFO - {"tagname":"12345","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+
+2015-05-14 14:41:18,609 - mylogger - INFO - {"tagname":"12345","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+
+2015-05-14 14:41:18,625 - mylogger - INFO - c:\\svn temp
+2015-05-14 14:41:18,625 - mylogger - INFO - c:\\svn temp
+2015-05-14 14:44:23,428 - mylogger - INFO - E:\coder\win32service
+2015-05-14 14:44:26,092 - mylogger - INFO - {"tagname":"123","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+
+2015-05-14 14:44:26,092 - mylogger - INFO - {"tagname":"123","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+
+2015-05-14 14:44:29,828 - mylogger - INFO - c:\\svn temp1
+2015-05-14 14:44:29,828 - mylogger - INFO - c:\\svn temp1
+2015-05-14 14:46:55,539 - mylogger - INFO - c:\
+2015-05-14 14:46:55,539 - mylogger - INFO - c:\
+2015-05-14 14:47:20,855 - mylogger - INFO - c:\
+2015-05-14 14:47:20,855 - mylogger - INFO - c:\
+2015-05-14 14:48:00,566 - mylogger - INFO - c:\
+2015-05-14 14:48:00,566 - mylogger - INFO - c:\
+2015-05-14 14:48:19,378 - mylogger - INFO - c:\
+2015-05-14 14:48:19,378 - mylogger - INFO - c:\
+2015-05-14 14:48:42,782 - mylogger - INFO - c:\
+2015-05-14 14:48:42,782 - mylogger - INFO - c:\
+2015-05-14 14:49:26,559 - mylogger - INFO - c:\
+2015-05-14 14:49:26,559 - mylogger - INFO - c:\
+2015-05-14 14:53:46,545 - mylogger - INFO - E:\coder\win32service
+2015-05-14 14:53:48,940 - mylogger - INFO - {"tagname":"123","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+
+2015-05-14 14:53:48,940 - mylogger - INFO - {"tagname":"123","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+
+2015-05-14 14:53:48,957 - mylogger - INFO - c:\\svn temp1
+2015-05-14 14:53:48,957 - mylogger - INFO - c:\\svn temp1
+2015-05-14 14:57:22,517 - mylogger - INFO - E:\coder\win32service
+2015-05-14 14:57:24,746 - mylogger - INFO - {"tagname":"123","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+
+2015-05-14 14:57:24,746 - mylogger - INFO - {"tagname":"123","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+
+2015-05-14 14:57:24,762 - mylogger - INFO - c:\\svn temp1
+2015-05-14 14:57:24,762 - mylogger - INFO - c:\\svn temp1
