@@ -4,6 +4,7 @@ import compile
 from xml.etree import ElementTree
 import jsondecode
 import Sendmail
+import log
 
 class SvnkitServer(TCPServer):  
             def handle_stream(self, stream, address): 
@@ -22,8 +23,9 @@ class Connection(object):
               
             def read_message(self):  
                 self._stream.read_until('\n', self.send_message)
-              
             def send_message(self, data):
+                logger=log.getlogger()
+                logger.info(data)
                 print data
                 if jsondecode.jsondecode(data,'language')==".net":
                         #self._stream.write_to_fd(".net")
@@ -39,11 +41,11 @@ class Connection(object):
                 else:
                     self._stream.write_to_fd("no support language")
                     self.read_message()
-            def on_close(self):  
+            def on_close(self):
                 print "A user has lost connection.", self._address
                 Connection.clients.remove(self)
 def listen(port):
-    server = SvnkitServer()  
+    server = SvnkitServer()
     server.listen(port)
     IOLoop.instance().start()
 def stoplisten():

@@ -11,7 +11,7 @@ import log
 import jsondecode
 import sys
 import cmd
-
+import svndiff
 ret=''
 workpath=''
 sourcedir=''
@@ -25,7 +25,7 @@ def exportfile(jsonstr):
     global workpath
     global sourcedir
     logger=log.getlogger()
-    xml_file='c:\\config.xml' 
+    xml_file=sys.path[0]+'\\config.xml' 
     xml=ElementTree.ElementTree(file=xml_file).getroot()
     workpath=xml.find('temppath').text
     sourcedir=jsondecode.jsondecode(jsonstr,'svnurl')
@@ -60,13 +60,14 @@ def compile(env,tagname,jsonstr):
                 global sourcedir              
                 r=svn.remote.RemoteClient(sourcedir,username,pwd)
                 #print sourcedir
+                svndiff.showdiff(workpath, sourcedir+'/trunk')
                 path=['-m','"commit"']
                 #r.run_command('revert',[])
                 print r.run_command('commit',path)
                 path=['trunk','tags/'+tagname]
                 print r.copy('trunk', 'tags/'+tagname+'_compiled')
                 shutil.rmtree(workpath, True)
-                Sendmail.sendtogroup('testing', 'version '+tagname, 'version '+tagname+' is compiled,please test..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled')
+                Sendmail.sendtogroup('testing', 'version '+tagname, 'version '+tagname+' is compiled,please test..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled'+'server path is '+'/home/swift')
                 Sendmail.sendtogroup('develop', 'version '+tagname, 'version '+tagname+' is compiled successfully..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled')
                 return 'success'
             else:

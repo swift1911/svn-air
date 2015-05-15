@@ -185,3 +185,19 @@ CopyFilesToOutputDirectory:
 
 2015-05-14 14:57:24,762 - mylogger - INFO - c:\\svn temp1
 2015-05-14 14:57:24,762 - mylogger - INFO - c:\\svn temp1
+2015-05-15 09:45:31,191 - mylogger - INFO - E:\coder\win32service
+2015-05-15 09:45:55,059 - mylogger - INFO - E:\coder\win32service
+2015-05-15 09:45:55,059 - mylogger - INFO - E:\coder\win32service
+2015-05-15 09:45:55,059 - mylogger - INFO - E:\coder\win32service
+2015-05-15 09:45:57,487 - mylogger - INFO - {"tagname":"9:45","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+
+2015-05-15 09:45:57,487 - mylogger - INFO - {"tagname":"9:45","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+
+2015-05-15 09:45:57,487 - mylogger - INFO - {"tagname":"9:45","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+
+2015-05-15 09:45:57,487 - mylogger - INFO - {"tagname":"9:45","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}
+
+2015-05-15 09:45:57,505 - mylogger - INFO - c:\\svn temp1
+2015-05-15 09:45:57,505 - mylogger - INFO - c:\\svn temp1
+2015-05-15 09:45:57,505 - mylogger - INFO - c:\\svn temp1
+2015-05-15 09:45:57,505 - mylogger - INFO - c:\\svn temp1

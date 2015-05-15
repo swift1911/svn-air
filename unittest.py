@@ -1,4 +1,4 @@
 
-import os
+aa='%s'%('c:\\svn temp')
 
-os.system('python tor.py')
+print aa

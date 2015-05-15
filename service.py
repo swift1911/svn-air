@@ -3,7 +3,7 @@ import win32service
 import win32event
 import tor
 from xml.etree import ElementTree
-
+import sys
 
 
 class svnair(win32serviceutil.ServiceFramework): 
@@ -18,7 +18,7 @@ class svnair(win32serviceutil.ServiceFramework):
         self.hWaitStop = win32event.CreateEvent(None, 0, 0, None)
         self.logger = self._getLogger()
         self.isAlive = True
-        xml_file='config.xml'
+        xml_file=sys.path[0]+'\\config.xml'
         xml=ElementTree.ElementTree(file=xml_file).getroot()
         self.__port=xml.find('localport').text
         
@@ -45,10 +45,10 @@ class svnair(win32serviceutil.ServiceFramework):
         self.logger.info ("Server start ......")
         
         tor.listen(self.__port)
-        win32event.WaitForSingleObject(self.hWaitStop, win32event.INFINITE)
+        #win32event.WaitForSingleObject(self.hWaitStop, win32event.INFINITE)
         
             
-    def SvcStop(self): 
+    def SvcStop(self):
         self.logger.info("svc do stop....")
         tor.stoplisten()
         self.ReportServiceStatus(win32service.SERVICE_STOP_PENDING) 
