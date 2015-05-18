@@ -61,13 +61,18 @@ def compile(env,tagname,jsonstr):
             if res==0:
                 global sourcedir              
                 r=svn.remote.RemoteClient(sourcedir,username,pwd)
+                l=sourcedir.split('/')
+                projname=l[len(l)-2]
                 #print sourcedir
-                files=svndiff.showdiff( sourcedir+'/trunk',workpath)
+                files=svndiff.showdiff(sourcedir+'/trunk',workpath)
+                #filesbackup=svndiff.showdiff(workpath,sourcedir+'/trunk')
+                
+                #winupload.winbackup('\\192.168.10.62\\upload', filesbackup,projname, tagname)
+                
                 path=['-m','"commit"']
                 #r.run_command('revert',[])
                 print r.run_command('commit',path)    
-                l=sourcedir.split('/')
-                projname=l[len(l)-2]
+                
                 winupload.winup('\\192.168.10.62\\upload', files, projname,tagname)
                            
                 path=['trunk','tags/'+tagname]
