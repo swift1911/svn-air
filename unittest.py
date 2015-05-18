@@ -1,3 +1,6 @@
-dirpath='C:\\svn\\bin'
+import urllib
+import os
 
-print dirpath[2:len(dirpath)].replace('\\','/')
+p=os.path.join('\192.168.10.62').join('upload')
+
+print p

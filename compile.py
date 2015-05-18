@@ -12,7 +12,7 @@ import jsondecode
 import sys
 import cmd
 import sshupload
-import ftpupload
+import winupload
 import svndiff
 ret=''
 workpath=''
@@ -65,11 +65,14 @@ def compile(env,tagname,jsonstr):
                 files=svndiff.showdiff( sourcedir+'/trunk',workpath)
                 path=['-m','"commit"']
                 #r.run_command('revert',[])
-                print r.run_command('commit',path)
-                sshupload.uploadfile(workpath,files, '192.168.10.166','/home/swift/addtional', 'swift', 'wjffsxka')
-                
+                print r.run_command('commit',path)    
+                l=sourcedir.split('/')
+                projname=l[len(l)-2]
+                winupload.winup('\\192.168.10.62\\upload', files, projname)
+                           
                 path=['trunk','tags/'+tagname]
                 print r.copy('trunk', 'tags/'+tagname+'_compiled')
+                
                 
                 
                 
@@ -89,10 +92,17 @@ def compile(env,tagname,jsonstr):
     if env=='java':
         os.chdir(workpath)
         res=os.system('ant')
-        if res==1:
-            shutil.rmtree(workpath, True)
+        if res==0:
+            l=sourcedir.split('/')
+            projname=l[len(l)-2]
+            files=svndiff.showdiff(sourcedir+'/trunk',workpath)
+            sshupload.uploadfile(projname,files, '192.168.10.166','/home/swift/addtional/', 'swift', 'wjffsxka')
+            Sendmail.sendtogroup('testing', 'version '+tagname, 'version '+tagname+' is compiled,please test..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled'+'server path is '+'/home/swift')
+            Sendmail.sendtogroup('develop', 'version '+tagname, 'version '+tagname+' is compiled successfully..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled')
+            shutil.rmtree(workpath,True)
             return 'success'
         else:
+            Sendmail.sendtogroup('develop', 'version '+tagname, 'version '+tagname+' is compiled failed..')
             shutil.rmtree(workpath, True)
             return 'failed'
 def iterfindfiles(path, fnexp):
