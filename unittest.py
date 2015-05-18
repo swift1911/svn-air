@@ -1,4 +1,3 @@
+dirpath='C:\\svn\\bin'
 
-aa='%s'%('c:\\svn temp')
-
-print aa
+print dirpath[2:len(dirpath)].replace('\\','/')

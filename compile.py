@@ -11,6 +11,8 @@ import log
 import jsondecode
 import sys
 import cmd
+import sshupload
+import ftpupload
 import svndiff
 ret=''
 workpath=''
@@ -60,15 +62,21 @@ def compile(env,tagname,jsonstr):
                 global sourcedir              
                 r=svn.remote.RemoteClient(sourcedir,username,pwd)
                 #print sourcedir
-                svndiff.showdiff(workpath, sourcedir+'/trunk')
+                files=svndiff.showdiff( sourcedir+'/trunk',workpath)
                 path=['-m','"commit"']
                 #r.run_command('revert',[])
                 print r.run_command('commit',path)
+                sshupload.uploadfile(workpath,files, '192.168.10.166','/home/swift/addtional', 'swift', 'wjffsxka')
+                
                 path=['trunk','tags/'+tagname]
                 print r.copy('trunk', 'tags/'+tagname+'_compiled')
-                shutil.rmtree(workpath, True)
+                
+                
+                
                 Sendmail.sendtogroup('testing', 'version '+tagname, 'version '+tagname+' is compiled,please test..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled'+'server path is '+'/home/swift')
                 Sendmail.sendtogroup('develop', 'version '+tagname, 'version '+tagname+' is compiled successfully..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled')
+                shutil.rmtree(workpath, True)
+                
                 return 'success'
             else:
                 Sendmail.sendtogroup('develop', 'version '+tagname, 'version '+tagname+' is compiled failed..')
