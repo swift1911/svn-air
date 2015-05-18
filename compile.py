@@ -68,7 +68,7 @@ def compile(env,tagname,jsonstr):
                 print r.run_command('commit',path)    
                 l=sourcedir.split('/')
                 projname=l[len(l)-2]
-                winupload.winup('\\192.168.10.62\\upload', files, projname)
+                winupload.winup('\\192.168.10.62\\upload', files, projname,tagname)
                            
                 path=['trunk','tags/'+tagname]
                 print r.copy('trunk', 'tags/'+tagname+'_compiled')

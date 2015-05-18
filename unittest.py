@@ -1,6 +1,5 @@
 import urllib
 import os
 
-p=os.path.join('\192.168.10.62').join('upload')
-
-print p
+print os.path.normpath('\\192.168.10.62\\upload')
+print r'%s\\%s\\%s'%('\\192.168.10.62\\upload','svn-air','test')
