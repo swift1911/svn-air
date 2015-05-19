@@ -21,7 +21,7 @@ sourcedir=''
 username=''
 pwd=''
 defpath=os.getcwd()
-
+push=''
 
 
 def exportfile(jsonstr):
@@ -29,6 +29,7 @@ def exportfile(jsonstr):
     global sourcedir
     global username
     global pwd
+    global push
     logger=log.getlogger()
     xml_file=sys.path[0]+'\\config.xml' 
     xml=ElementTree.ElementTree(file=xml_file).getroot()
@@ -36,6 +37,7 @@ def exportfile(jsonstr):
     sourcedir=jsondecode.jsondecode(jsonstr,'svnurl')
     username=jsondecode.jsondecode(jsonstr,'username')
     pwd=jsondecode.jsondecode(jsonstr,'userpwd')
+    push=jsondecode.jsondecode(jsonstr,'push')
     try:
         r=svn.remote.RemoteClient(sourcedir+'trunk',username,pwd)
         if os.path.exists(workpath)==True:
@@ -51,6 +53,7 @@ def compile(env,tagname,jsonstr):
     global workpath
     global username
     global pwd
+    global push
     logger=log.getlogger()
     logger.info(os.getcwd())
     exportfile(jsonstr)
@@ -85,8 +88,8 @@ def compile(env,tagname,jsonstr):
                 
                 dbclient=mongodbaction()
                 dbclient.insertlog(projname,username,'compile',tagname)
-                
-                Sendmail.sendtogroup('test', 'version '+tagname, 'version '+tagname+' is compiled,please test..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled')
+                if push==0:
+                    Sendmail.sendtogroup('test', 'version '+tagname, 'version '+tagname+' is compiled,please test..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled')
                 Sendmail.sendtogroup('develop', 'version '+tagname, 'version '+tagname+' is compiled successfully..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled')
                 shutil.rmtree(workpath, True)
                 

@@ -12,7 +12,7 @@ def showdiff(path1,path2):
     files=[]
     files=filestr.split('\r\n')
     print files
-    return files    
+    return files
 if __name__=="__main__":
     showdiff('https://192.168.10.110/svn/svn-air-test/trunk','c:\\svn-air-test\\trunk')
     
