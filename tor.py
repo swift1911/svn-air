@@ -20,7 +20,7 @@ class Connection(object):
                 self._stream.set_close_callback(self.on_close)  
                 self.read_message()  
                 print "A new user has connected.", address
-              
+                
             def read_message(self):  
                 self._stream.read_until('\n', self.send_message)
             def send_message(self, data):
