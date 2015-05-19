@@ -18,5 +18,9 @@ class mongodbaction():
             return cursor.get('usergroup')
         else:
             return None
-    def insertlog(self,username,tagname):
-        self.__db.log.insert_one({"username":username,"tagname":tagname,"time":time.ctime()})
+    def insertlog(self,projname,username,action,tagname):
+        cursor=self.__db.log.find({"projname":projname})
+        if cursor.count()==0:
+            self.__db.log.insert_one({"projname":projname,"info":[]})
+        self.__db.log.update({"projname":projname},{"$push":{"info":{"username":username,"action":tagname+' '+action,"time":time.ctime()}}})
+    

@@ -84,7 +84,7 @@ def compile(env,tagname,jsonstr):
                 print r.copy('trunk', 'tags/'+tagname+'_compiled')
                 
                 dbclient=mongodbaction()
-                dbclient.insertlog(username, tagname)
+                dbclient.insertlog(projname,username,'compile',tagname)
                 
                 Sendmail.sendtogroup('testing', 'version '+tagname, 'version '+tagname+' is compiled,please test..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled'+'server path is '+'/home/swift')
                 Sendmail.sendtogroup('develop', 'version '+tagname, 'version '+tagname+' is compiled successfully..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled')
