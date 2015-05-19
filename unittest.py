@@ -1,7 +1,7 @@
-import urllib
-import os
+from pymongo import MongoClient
+import time
 
-print os.path.normpath('\\192.168.10.62\\upload')
-print r'%s\\%s\\%s'%('\\192.168.10.62\\upload','svn-air','test')
+client=MongoClient()
+db=client.test
 
-os.system('f:'&'cd svn folderwc')
+print time.ctime()

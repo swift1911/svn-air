@@ -13,6 +13,7 @@ import sys
 import cmd
 import sshupload
 import winupload
+from mongodbaction import mongodbaction
 import svndiff
 ret=''
 workpath=''
@@ -26,6 +27,8 @@ defpath=os.getcwd()
 def exportfile(jsonstr):
     global workpath
     global sourcedir
+    global username
+    global pwd
     logger=log.getlogger()
     xml_file=sys.path[0]+'\\config.xml' 
     xml=ElementTree.ElementTree(file=xml_file).getroot()
@@ -46,6 +49,8 @@ def exportfile(jsonstr):
     #shutil.rmtree(os.getcwd()+'\\svn temp')
 def compile(env,tagname,jsonstr):
     global workpath
+    global username
+    global pwd
     logger=log.getlogger()
     logger.info(os.getcwd())
     exportfile(jsonstr)
@@ -78,8 +83,8 @@ def compile(env,tagname,jsonstr):
                 path=['trunk','tags/'+tagname]
                 print r.copy('trunk', 'tags/'+tagname+'_compiled')
                 
-                
-                
+                dbclient=mongodbaction()
+                dbclient.insertlog(username, tagname)
                 
                 Sendmail.sendtogroup('testing', 'version '+tagname, 'version '+tagname+' is compiled,please test..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled'+'server path is '+'/home/swift')
                 Sendmail.sendtogroup('develop', 'version '+tagname, 'version '+tagname+' is compiled successfully..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled')

@@ -9,12 +9,13 @@ def winup(hostpath,files,projname,tagname):
         if os.path.exists(p)==False:
             mkcmd='mkdir -p '+p
             subprocess.Popen(mkcmd,shell=True)
-        subprocess.Popen('copy '+f+' %s /y'%(p),shell=True)
-        backuppath="c:\\backup"
-        backuppath=backuppath+'\\'+projname+'\\'+'"'+tagname+'"'+'\\'+dirpath
-        if os.path.exists(backuppath)==False:
-            subprocess.Popen('mkdir -p '+backuppath,shell=True)
-        subprocess.Popen('copy '+f+' %s /y'%(backuppath),shell=True)
+        proc=subprocess.Popen('copy '+f+' %s /y'%(p),shell=True)
+        print proc.wait()
+        #backuppath="c:\\backup"
+        #backuppath=backuppath+'\\'+projname+'\\'+'"'+tagname+'"'+'\\'+dirpath
+        #if os.path.exists(backuppath)==False:
+        #    subprocess.Popen('mkdir -p '+backuppath,shell=True)
+        #subprocess.Popen('copy '+f+' %s /y'%(backuppath),shell=True)
         
     
         

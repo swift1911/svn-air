@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+import time
 class mongodbaction():
     __db=''
     def __init__(self):
@@ -17,3 +18,5 @@ class mongodbaction():
             return cursor.get('usergroup')
         else:
             return None
+    def insertlog(self,username,tagname):
+        self.__db.log.insert_one({"username":username,"tagname":tagname,"time":time.ctime()})
