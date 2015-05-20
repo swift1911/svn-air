@@ -96,10 +96,11 @@ def compile(env,tagname,jsonstr):
                 print r.copy('trunk', 'tags/'+tagname+'_compiled')
                 dbclient=mongodbaction()
                 dbclient.insertlog(projname,username,'compile',tagname)
+                shutil.rmtree(workpath, True)
                 if push==0:
                     Sendmail.sendtogroup('test', 'version '+tagname, 'version '+tagname+' is compiled,please test..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled')
                 Sendmail.sendtogroup('develop', 'version '+tagname, 'version '+tagname+' is compiled successfully..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled')
-                shutil.rmtree(workpath, True)
+                
                 
                 return 'success'
             else:
@@ -142,6 +143,7 @@ def compile(env,tagname,jsonstr):
         projname=l[len(l)-2]
         cmd='msbuild /p:Configuration=Release;VisualStudioVersion=12.0 /p:WebProjectOutputDir=%s\\192.168.10.165\\share\\%s /p:OutputPath=%s\\192.168.10.165\\share\\%s\\bin'%('\\',projname,'\\',projname)
         res=os.system(cmd)
+        print workpath
         dbclient=mongodbaction()
         dbclient.insertlog(projname,username,'go online',tagname)
         if res==0:
