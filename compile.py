@@ -96,7 +96,7 @@ def compile(env,tagname,jsonstr):
                 print r.copy('trunk', 'tags/'+tagname+'_compiled')
                 dbclient=mongodbaction()
                 dbclient.insertlog(projname,username,'compile',tagname)
-                shutil.rmtree(workpath, True)
+                os.system('rd /s/q %s'%(workpath))
                 if push==0:
                     Sendmail.sendtogroup('test', 'version '+tagname, 'version '+tagname+' is compiled,please test..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled')
                 Sendmail.sendtogroup('develop', 'version '+tagname, 'version '+tagname+' is compiled successfully..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled')
@@ -105,10 +105,10 @@ def compile(env,tagname,jsonstr):
                 return 'success'
             else:
                 Sendmail.sendtogroup('develop', 'version '+tagname, 'version '+tagname+' is compiled failed..')
-                shutil.rmtree(workpath, True)
+                os.system('rd /s/q %s'%(workpath))
                 return 'failed'
         except Exception,e:
-            shutil.rmtree(workpath, True)
+            os.system('rd /s/q %s'%(workpath))
             print e
             return e
     if env=='java':
@@ -122,11 +122,11 @@ def compile(env,tagname,jsonstr):
             sshupload.uploadfile(projname,files, '192.168.10.166','/home/swift/addtional/', 'swift', 'wjffsxka')
             Sendmail.sendtogroup('testing', 'version '+tagname, 'version '+tagname+' is compiled,please test..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled'+'server path is '+'/home/swift')
             Sendmail.sendtogroup('develop', 'version '+tagname, 'version '+tagname+' is compiled successfully..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled')
-            shutil.rmtree(workpath,True)
+            os.system('rd /s/q %s'%(workpath))
             return 'success'
         else:
             Sendmail.sendtogroup('develop', 'version '+tagname, 'version '+tagname+' is compiled failed..')
-            shutil.rmtree(workpath, True)
+            os.system('rd /s/q %s'%(workpath))
             return 'failed'
     if env=='testok':
         ssdir=jsondecode.jsondecode(jsonstr,'svnurl') 
@@ -150,7 +150,7 @@ def compile(env,tagname,jsonstr):
             Sendmail.sendtogroup('run', 'version '+tagname, 'project:'+projname+' version '+tagname+' is push ok,please run it')
         else:
             Sendmail.sendtogroup('run', 'version '+tagname, 'project:'+projname+' version '+tagname+' is push error')
-        shutil.rmtree(workpath, True)
+        os.system('rd /s/q %s'%(workpath))
 def iterfindfiles(path, fnexp):
     global ret
     ret=''
