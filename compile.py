@@ -33,15 +33,15 @@ def exportfile(jsonstr,remotepath):
     logger=log.getlogger()
     xml_file=sys.path[0]+'\\config.xml' 
     xml=ElementTree.ElementTree(file=xml_file).getroot()
-    workpath=xml.find('temppath').text
     sourcedir=jsondecode.jsondecode(jsonstr,'svnurl')
+    l=sourcedir.split('/')
+    projname=l[len(l)-2]
+    workpath=xml.find('temppath').text+projname
     username=jsondecode.jsondecode(jsonstr,'username')
     pwd=jsondecode.jsondecode(jsonstr,'userpwd')
     push=jsondecode.jsondecode(jsonstr,'push')
     try:
         r=svn.remote.RemoteClient(sourcedir+remotepath,username,pwd)
-        if os.path.exists(workpath)==True:
-            os.system('rd /s/q %s'%(workpath))
         r.checkout(workpath)
         #r.run_command('commit')
     except Exception,e:
@@ -87,9 +87,9 @@ def compile(env,tagname,jsonstr):
                 
                 #winupload.winbackup('\\192.168.10.62\\upload', filesbackup,projname, tagname)
                 
-                path=['-m','"commit"']
+                #path=['-m','"commit"']
                 #r.run_command('revert',[])
-                print r.run_command('commit',path)    
+                #print r.run_command('commit',path)    
                 if push==1:
                     winupload.winup('\\192.168.10.62\\upload\\backup', files, projname,tagname)
                 path=['trunk','tags/'+tagname]
@@ -97,7 +97,7 @@ def compile(env,tagname,jsonstr):
                 dbclient=mongodbaction()
                 dbclient.insertlog(projname,username,'compile',tagname)
                 
-                os.system('rd /s/q %s'%(workpath))
+                #shutil.rmtree(workpath, True)
                 if push==0:
                     Sendmail.sendtogroup('test', 'version '+tagname, 'version '+tagname+' is compiled,please test..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled')
                 Sendmail.sendtogroup('develop', 'version '+tagname, 'version '+tagname+' is compiled successfully..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled')
@@ -106,10 +106,10 @@ def compile(env,tagname,jsonstr):
                 return 'success'
             else:
                 Sendmail.sendtogroup('develop', 'version '+tagname, 'version '+tagname+' is compiled failed..')
-                os.system('rd /s/q %s'%(workpath))
+                #shutil.rmtree(workpath, True)
                 return 'failed'
         except Exception,e:
-            os.system('rd /s/q %s'%(workpath))
+            #shutil.rmtree(workpath, True)
             print e
             return e
     if env=='java':
@@ -123,11 +123,11 @@ def compile(env,tagname,jsonstr):
             sshupload.uploadfile(projname,files, '192.168.10.166','/home/swift/addtional/', 'swift', 'wjffsxka')
             Sendmail.sendtogroup('testing', 'version '+tagname, 'version '+tagname+' is compiled,please test..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled'+'server path is '+'/home/swift')
             Sendmail.sendtogroup('develop', 'version '+tagname, 'version '+tagname+' is compiled successfully..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled')
-            os.system('rd /s/q %s'%(workpath))
+            #shutil.rmtree(workpath, True)
             return 'success'
         else:
             Sendmail.sendtogroup('develop', 'version '+tagname, 'version '+tagname+' is compiled failed..')
-            os.system('rd /s/q %s'%(workpath))
+            #shutil.rmtree(workpath, True)
             return 'failed'
     if env=='testok':
         ssdir=jsondecode.jsondecode(jsonstr,'svnurl') 
@@ -151,7 +151,7 @@ def compile(env,tagname,jsonstr):
             Sendmail.sendtogroup('run', 'version '+tagname, 'project:'+projname+' version '+tagname+' is push ok,please run it')
         else:
             Sendmail.sendtogroup('run', 'version '+tagname, 'project:'+projname+' version '+tagname+' is push error')
-        os.system('rd /s/q %s'%(workpath))
+        #shutil.rmtree(workpath, True)
 def iterfindfiles(path, fnexp):
     global ret
     ret=''
