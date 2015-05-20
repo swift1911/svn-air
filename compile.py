@@ -24,7 +24,7 @@ defpath=os.getcwd()
 push=''
 
 
-def exportfile(jsonstr):
+def exportfile(jsonstr,remotepath):
     global workpath
     global sourcedir
     global username
@@ -39,7 +39,7 @@ def exportfile(jsonstr):
     pwd=jsondecode.jsondecode(jsonstr,'userpwd')
     push=jsondecode.jsondecode(jsonstr,'push')
     try:
-        r=svn.remote.RemoteClient(sourcedir+'trunk',username,pwd)
+        r=svn.remote.RemoteClient(sourcedir+remotepath,username,pwd)
         if os.path.exists(workpath)==True:
             shutil.rmtree(workpath,True)
         r.checkout(workpath)
@@ -54,25 +54,33 @@ def compile(env,tagname,jsonstr):
     global username
     global pwd
     global push
+    global ret
     global sourcedir 
     logger=log.getlogger()
     logger.info(os.getcwd())
-    exportfile(jsonstr)
     logger.info(jsonstr)
     if env=='.net':
         try:
+            exportfile(jsonstr,'trunk')
             getprojfilepath()
             print ret
             logger.info(ret)
-            os.chdir(workpath)
+            os.chdir(ret)
             l=sourcedir.split('/')
             projname=l[len(l)-2]
-            cmd='msbuild /p:Configuration=Release;VisualStudioVersion=12.0 /p:WebProjectOutputDir=\\192.168.10.62\\upload\\%s /p:OutputPath=\\192.168.10.62\\upload\\%s\\bin'%(projname,projname) 
+            if push==0:
+                cmd='msbuild /p:Configuration=Release;VisualStudioVersion=12.0 /p:WebProjectOutputDir=%s\\192.168.10.62\\upload\\%s /p:OutputPath=%s\\192.168.10.62\\upload\\%s\\bin'%('\\',projname,'\\',projname) 
+            if push==1:
+                cmd='msbuild /p:Configuration=Release;VisualStudioVersion=12.0'
+            print cmd
             res=os.system(cmd)
-            if res==0:
-                             
+            if push==0:
+                cmd='msbuild /p:Configuration=Release;VisualStudioVersion=12.0 /p:WebProjectOutputDir=c:\\Release\\%s /p:OutputPath=c:\\Release\\%s\\bin'%(projname,projname) 
+                os.system(cmd)
+                cmd='msbuild /p:Configuration=Release;VisualStudioVersion=12.0'
+                os.system(cmd)
+            if res==0:              
                 r=svn.remote.RemoteClient(sourcedir,username,pwd)
-                
                 #print sourcedir
                 files=svndiff.showdiff(sourcedir+'/trunk',workpath)
                 #filesbackup=svndiff.showdiff(workpath,sourcedir+'/trunk')
@@ -82,12 +90,10 @@ def compile(env,tagname,jsonstr):
                 path=['-m','"commit"']
                 #r.run_command('revert',[])
                 print r.run_command('commit',path)    
-                
-                #winupload.winup('\\192.168.10.62\\upload', files, projname,tagname)
-                           
+                if push==1:
+                    winupload.winup('\\192.168.10.62\\upload\\backup', files, projname,tagname)
                 path=['trunk','tags/'+tagname]
                 print r.copy('trunk', 'tags/'+tagname+'_compiled')
-                
                 dbclient=mongodbaction()
                 dbclient.insertlog(projname,username,'compile',tagname)
                 if push==0:
@@ -105,6 +111,7 @@ def compile(env,tagname,jsonstr):
             print e
             return e
     if env=='java':
+        exportfile(jsonstr,'trunk')
         os.chdir(workpath)
         res=os.system('ant')
         if res==0:
@@ -120,6 +127,27 @@ def compile(env,tagname,jsonstr):
             Sendmail.sendtogroup('develop', 'version '+tagname, 'version '+tagname+' is compiled failed..')
             shutil.rmtree(workpath, True)
             return 'failed'
+    if env=='testok':
+        ssdir=jsondecode.jsondecode(jsonstr,'svnurl') 
+        l=ssdir.split('/')
+        projname=l[len(l)-2]    
+        Sendmail.sendtogroup('run', 'version '+tagname, 'project:'+projname+' version: '+tagname+' is test ok,please pull it')
+        dbclient=mongodbaction()
+        dbclient.insertlog(projname,jsondecode.jsondecode(jsonstr,'username'),'test ok',tagname)
+    if env=='run':
+        exportfile(jsonstr,'tags/'+tagname)
+        getprojfilepath()
+        os.chdir(ret)
+        l=sourcedir.split('/')
+        projname=l[len(l)-2]
+        cmd='msbuild /p:Configuration=Release;VisualStudioVersion=12.0 /p:WebProjectOutputDir=%s\\192.168.10.165\\share\\%s /p:OutputPath=%s\\192.168.10.165\\share\\%s\\bin'%('\\',projname,'\\',projname)
+        res=os.system(cmd)
+        dbclient=mongodbaction()
+        dbclient.insertlog(projname,username,'go online',tagname)
+        if res==0:
+            Sendmail.sendtogroup('run', 'version '+tagname, 'project:'+projname+' version '+tagname+' is push ok,please run it')
+        else:
+            Sendmail.sendtogroup('run', 'version '+tagname, 'project:'+projname+' version '+tagname+' is push error')
 def iterfindfiles(path, fnexp):
     global ret
     ret=''

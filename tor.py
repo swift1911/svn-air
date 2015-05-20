@@ -35,9 +35,13 @@ class Connection(object):
                     self._stream.write_to_fd(compile.compile('java', jsondecode.jsondecode(data,'tagname'),data))
                     self.read_message()
                 elif jsondecode.jsondecode(data,'language')=="testok":
-                    Sendmail.sendtogroup('run', 'version '+jsondecode.jsondecode(data,'tagname'), 'version '+jsondecode.jsondecode(data,'tagname')+' is test ok,please run it')
+                    compile.compile('testok',jsondecode.jsondecode(data,'tagname'),data)
                     self._stream.write_to_fd('ok')
                     self.read_message()
+                elif jsondecode.jsondecode(data,'language')=="run":
+                    compile.compile('run',jsondecode.jsondecode(data,'tagname'),data)
+                    self._stream.write_to_fd('ok')
+                    self.read_message()    
                 else:
                     self._stream.write_to_fd("no support language")
                     self.read_message()
