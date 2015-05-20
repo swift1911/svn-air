@@ -148,6 +148,7 @@ def compile(env,tagname,jsonstr):
             Sendmail.sendtogroup('run', 'version '+tagname, 'project:'+projname+' version '+tagname+' is push ok,please run it')
         else:
             Sendmail.sendtogroup('run', 'version '+tagname, 'project:'+projname+' version '+tagname+' is push error')
+        shutil.rmtree(workpath, True)
 def iterfindfiles(path, fnexp):
     global ret
     ret=''
