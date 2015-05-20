@@ -41,7 +41,7 @@ def exportfile(jsonstr,remotepath):
     try:
         r=svn.remote.RemoteClient(sourcedir+remotepath,username,pwd)
         if os.path.exists(workpath)==True:
-            shutil.rmtree(workpath,True)
+            os.system('rd /s/q %s'%(workpath))
         r.checkout(workpath)
         #r.run_command('commit')
     except Exception,e:
@@ -96,6 +96,7 @@ def compile(env,tagname,jsonstr):
                 print r.copy('trunk', 'tags/'+tagname+'_compiled')
                 dbclient=mongodbaction()
                 dbclient.insertlog(projname,username,'compile',tagname)
+                
                 os.system('rd /s/q %s'%(workpath))
                 if push==0:
                     Sendmail.sendtogroup('test', 'version '+tagname, 'version '+tagname+' is compiled,please test..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled')
