@@ -54,6 +54,7 @@ def compile(env,tagname,jsonstr):
     global username
     global pwd
     global push
+    global sourcedir 
     logger=log.getlogger()
     logger.info(os.getcwd())
     exportfile(jsonstr)
@@ -64,13 +65,14 @@ def compile(env,tagname,jsonstr):
             print ret
             logger.info(ret)
             os.chdir(workpath)
-            cmd='msbuild /p:VisualStudioVersion=12.0' 
+            l=sourcedir.split('/')
+            projname=l[len(l)-2]
+            cmd='msbuild /p:Configuration=Release;VisualStudioVersion=12.0 /p:WebProjectOutputDir=\\192.168.10.62\\upload\\%s /p:OutputPath=\\192.168.10.62\\upload\\%s\\bin'%(projname,projname) 
             res=os.system(cmd)
             if res==0:
-                global sourcedir              
+                             
                 r=svn.remote.RemoteClient(sourcedir,username,pwd)
-                l=sourcedir.split('/')
-                projname=l[len(l)-2]
+                
                 #print sourcedir
                 files=svndiff.showdiff(sourcedir+'/trunk',workpath)
                 #filesbackup=svndiff.showdiff(workpath,sourcedir+'/trunk')
@@ -81,7 +83,7 @@ def compile(env,tagname,jsonstr):
                 #r.run_command('revert',[])
                 print r.run_command('commit',path)    
                 
-                winupload.winup('\\192.168.10.62\\upload', files, projname,tagname)
+                #winupload.winup('\\192.168.10.62\\upload', files, projname,tagname)
                            
                 path=['trunk','tags/'+tagname]
                 print r.copy('trunk', 'tags/'+tagname+'_compiled')
@@ -127,7 +129,7 @@ def iterfindfiles(path, fnexp):
             ret+=root
 def getprojfilepath():
     global workpath
-    for filename in iterfindfiles(workpath, "*.csproj"): 
+    for filename in iterfindfiles(workpath, "*.sln"):
         print filename
 if __name__=="__main__":
     compile('.net','.net service test','{"tagname":"123","userpwd":"!@WSXadjSwift","language":".net","svnurl":"https://192.168.10.110/svn/svn-air-test/","username":"swift"}')
