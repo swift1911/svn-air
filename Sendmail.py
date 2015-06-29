@@ -4,7 +4,7 @@ from mongodbaction import mongodbaction
 mailto_list=[] 
 mail_host="smtp.exmail.qq.com"  
 mail_user="duyalin@aidaijia.com"   
-mail_pass="mln2009"
+mail_pass="xxx"
 mail_postfix="XXX.com"
   
 def send_mail(to_list,sub,content):  

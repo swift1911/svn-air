@@ -82,7 +82,7 @@ def compile(env,tagname,jsonstr):
             if res==0:              
                 r=svn.remote.RemoteClient(sourcedir,username,pwd)
                 #print sourcedir
-                files=svndiff.showdiff(sourcedir+'/trunk',workpath)
+                files=svndiff.showdiff(sourcedir+'/tags/original',workpath)
                 #filesbackup=svndiff.showdiff(workpath,sourcedir+'/trunk')
                 
                 #winupload.winbackup('\\192.168.10.62\\upload', filesbackup,projname, tagname)
@@ -90,14 +90,15 @@ def compile(env,tagname,jsonstr):
                 #path=['-m','"commit"']
                 #r.run_command('revert',[])
                 #print r.run_command('commit',path)    
-                if push==1:
-                    winupload.winup('\\192.168.10.62\\upload\\backup', files, projname,tagname)
+                winupload.winup(0,'\\192.168.10.62\\upload\\backup', files, projname,tagname)
+                winupload.winup(1,'c:\\zz',files,projname,tagname)
                 path=['trunk','tags/'+tagname]
                 print r.copy('trunk', 'tags/'+tagname+'_compiled')
                 dbclient=mongodbaction()
                 dbclient.insertlog(projname,username,'compile',tagname)
                 
                 #shutil.rmtree(workpath, True)
+                
                 if push==0:
                     Sendmail.sendtogroup('test', 'version '+tagname, 'version '+tagname+' is compiled,please test..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled')
                 Sendmail.sendtogroup('develop', 'version '+tagname, 'version '+tagname+' is compiled successfully..'+'path : '+sourcedir+"/tags/"+tagname.encode()+'_compiled')
