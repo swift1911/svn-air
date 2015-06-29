@@ -2,8 +2,8 @@ import smtplib
 from email.mime.text import MIMEText  
 from mongodbaction import mongodbaction
 mailto_list=[] 
-mail_host="smtp.exmail.qq.com"  
-mail_user="duyalin@aidaijia.com"   
+mail_host="smtp.exmail.qq.com"
+mail_user="xxx"   
 mail_pass="xxx"
 mail_postfix="XXX.com"
   
