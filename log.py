@@ -4,7 +4,7 @@ def getlogger():
     logger = logging.getLogger('mylogger')  
     logger.setLevel(logging.DEBUG)  
       
-    fh = logging.FileHandler('c:\\output.log')  
+    fh = logging.FileHandler('d:\\output.log')  
     fh.setLevel(logging.DEBUG)  
       
     ch = logging.StreamHandler()  

@@ -8,7 +8,7 @@ def uploaddir(workpath,dirpath,serverip,serverpath,username,pwd):
 def uploadfile(projname,files,serverip,serverpath,username,pwd):
     sshclient=paramiko.SSHClient()
     sshclient.set_missing_host_key_policy(paramiko.AutoAddPolicy())  
-    sshclient.connect('192.168.10.166', 22, username,pwd)
+    sshclient.connect(serverip, 22, username,pwd)
     for f in files:
         print f
         dirpath=os.path.dirname(f)
